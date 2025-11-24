@@ -3,21 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>방콕 기상 정보 - BTS1208</title>
+<title>방콕 날씨 - BTS1208</title>
 <style>
 body { font-family: Arial, sans-serif; margin:0; background:#f1f3f4; color:#222; }
 header { background:#222; color:#fff; padding:15px 20px; text-align:center; font-size:22px; }
 main { max-width:800px; margin:40px auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
 h1 { text-align:center; }
 .info { font-size:18px; margin:15px 0; }
-a { color:#1a73e8; text-decoration:none; }
-a:hover { text-decoration:underline; }
-footer { text-align:center; padding:30px; font-size:14px; color:#555; }
 button { padding:10px 20px; font-size:16px; cursor:pointer; }
+footer { text-align:center; padding:30px; font-size:14px; color:#555; }
 </style>
-<script>
-function goBack() { window.location.href = "./index.html"; }
-</script>
 </head>
 <body>
 <header>
@@ -25,17 +20,59 @@ function goBack() { window.location.href = "./index.html"; }
 </header>
 <main>
 <h1>방콕</h1>
-<div class="info">
-🌤 날씨: 맑음 / 25°C<br>
-⏰ 현지 시간: 12:00<br>
-🌫 대기질: 좋음
+<div class="info" id="weather-info">
+  로딩중…
 </div>
 <div style="text-align:center; margin-top:20px;">
-<button onclick="goBack()">⬅ 메인 페이지로</button>
+<button onclick="window.location.href='index.html'">⬅ 메인 페이지로</button>
 </div>
 </main>
 <footer>
 ⓒ 2025 BTS1208 — Global Weather Map Project
 </footer>
+
+<script>
+// ========================
+// 여기에서 발급받은 Key/Token 입력
+// ========================
+const city = "Seoul";
+const openWeatherKey = "3a3db3ff3849aed139f2e338586c54dd";
+const waqiKey = "f3c70f4f162f12f4eb4a6566a97918724927da73";
+
+function updateWeather() {
+  // 날씨 API 호출
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${openWeatherKey}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("weather-info").innerHTML =
+        `🌤 날씨: ${data.weather[0].description} / ${data.main.temp}°C<br>`;
+    }).catch(err => {
+      document.getElementById("weather-info").innerHTML = "날씨 정보를 불러올 수 없습니다.";
+    });
+
+  // 대기질 API 호출
+  fetch(`https://api.waqi.info/feed/${city}/?token=${waqiKey}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("weather-info").innerHTML += `🌫 대기질: ${data.data.aqi}`;
+    }).catch(err => {
+      document.getElementById("weather-info").innerHTML += "<br>대기질 정보를 불러올 수 없습니다.";
+    });
+
+  // 현지 시간 표시
+  const now = new Date();
+  document.getElementById("weather-info").innerHTML += `<br>⏰ 현지 시간: ${now.toLocaleTimeString()}`;
+}
+
+// 1분마다 업데이트
+setInterval(() => { 
+  document.getElementById("weather-info").innerHTML = "";
+  updateWeather();
+}, 60000);
+
+// 페이지 로드 시 바로 실행
+window.onload = updateWeather;
+</script>
+
 </body>
 </html>
