@@ -1,10 +1,41 @@
-<div class="city-item" onclick="location.href='seoul.html'">🇰🇷 서울 날씨 확인</div>
-<div class="city-item" onclick="location.href='tokyo.html'">🇯🇵 도쿄 날씨 확인</div>
-<div class="city-item" onclick="location.href='beijing.html'">🇨🇳 베이징 날씨 확인</div>
-<div class="city-item" onclick="location.href='newyork.html'">🇺🇸 뉴욕 날씨 확인</div>
-<div class="city-item" onclick="location.href='paris.html'">🇫🇷 파리 날씨 확인</div>
-<div class="city-item" onclick="location.href='london.html'">🇬🇧 런던 날씨 확인</div>
-<div class="city-item" onclick="location.href='sydney.html'">🇦🇺 시드니 날씨 확인</div>
-<div class="city-item" onclick="location.href='singapore.html'">🇸🇬 싱가포르 날씨 확인</div>
-<div class="city-item" onclick="location.href='la.html'">🇺🇸 LA 날씨 확인</div>
-<div class="city-item" onclick="location.href='bangkok.html'">🇹🇭 방콕 날씨 확인</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTS1208 - 글로벌 날씨</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; background:#f1f3f4; color:#222; }
+header { background:#222; color:#fff; padding:15px 20px; text-align:center; font-size:22px; }
+main { max-width:800px; margin:40px auto; background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+h1 { text-align:center; }
+.city-list { display:flex; flex-wrap:wrap; justify-content:center; gap:15px; margin-top:30px; }
+.city-item { padding:10px 20px; background:#4CAF50; color:#fff; border-radius:8px; text-decoration:none; cursor:pointer; font-weight:bold; transition:0.3s; }
+.city-item:hover { background:#45a049; }
+footer { text-align:center; padding:30px; font-size:14px; color:#555; }
+</style>
+</head>
+<body>
+<header>
+🌎 글로벌 날씨 정보 - BTS1208
+</header>
+<main>
+<h1>도시 선택</h1>
+<div class="city-list">
+  <a href="seoul.html" class="city-item">🇰🇷 서울 날씨 확인</a>
+  <a href="tokyo.html" class="city-item">🇯🇵 도쿄 날씨 확인</a>
+  <a href="beijing.html" class="city-item">🇨🇳 베이징 날씨 확인</a>
+  <a href="newyork.html" class="city-item">🇺🇸 뉴욕 날씨 확인</a>
+  <a href="london.html" class="city-item">🇬🇧 런던 날씨 확인</a>
+  <a href="paris.html" class="city-item">🇫🇷 파리 날씨 확인</a>
+  <a href="sydney.html" class="city-item">🇦🇺 시드니 날씨 확인</a>
+  <a href="moscow.html" class="city-item">🇷🇺 모스크바 날씨 확인</a>
+  <a href="cairo.html" class="city-item">🇪🇬 카이로 날씨 확인</a>
+  <a href="rio.html" class="city-item">🇧🇷 리우데자네이루 날씨 확인</a>
+</div>
+</main>
+<footer>
+ⓒ 2025 BTS1208 — Global Weather Map Project
+</footer>
+</body>
+</html>
